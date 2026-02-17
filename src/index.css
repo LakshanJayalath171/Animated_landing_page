@@ -25,3 +25,9 @@
         
   }
 }
+
+.body{
+  font-family: sans-serif;
+  background-color: #dfdff0;
+  overflow-x: hidden;
+}
