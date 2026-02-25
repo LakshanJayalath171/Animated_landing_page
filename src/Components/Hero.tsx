@@ -3,6 +3,9 @@ import { TiLocationArrow } from "react-icons/ti";
 import Button from "../Components/Button.jsx"
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
 
@@ -13,7 +16,7 @@ const Hero = () => {
     const [loadedVideo,setLoadedVideos] = useState(0);
 
     // defining all variables
-    const totalVideo = 3;
+    const totalVideo = 4;
     const getVideoIndex = (index:any)=>`public/videos/hero-${index}.mp4`
     const upcommingVideoIndex = (currentIndex % totalVideo)+1;
     
@@ -39,34 +42,55 @@ const Hero = () => {
 
     // GSAP Animation section 
 
-    // useGSAP(()=>{
-    //     if(hasClicked){
-    //         gsap.set("#next-video",{visibility:'visible'})
-    //     }
+    useGSAP(()=>{
+        if(hasClicked){
+            gsap.set("#next-video",{visibility:'visible'})
+        }
 
-    //     gsap.to("#next-video",{
-    //         transformOrigin:'center center',
-    //         scale:1,
-    //         width:"100%",
-    //         height:"100%",
-    //         duration:1,
-    //         ease:"power1.inOut",
-    //         onStart:()=>videoRef.current.play(),
-    //     })
+        gsap.to("#next-video",{
+            transformOrigin:'center center',
+            scale:1,
+            width:"100%",
+            height:"100%",
+            duration:1,
+            ease:"power1.inOut",
+            onStart:()=>videoRef.current.play(),
+        })
 
-    //     gsap.from("#current-video",{
-    //         transformOrigin:"center center",
-    //         scale:0,
-    //         duration:1.5,
-    //         ease:"power1.inOut"
-    //     })
-    // },{dependencies:[currentIndex],revertOnUpdate:true})
-    
+        gsap.from("#current-video",{
+            transformOrigin:"center center",
+            scale:0,
+            duration:1.5,
+            ease:"power1.inOut"
+        })
+    },{dependencies:[currentIndex],revertOnUpdate:true})
+
+    // animates video division 
+
+    useGSAP(()=>{
+        gsap.set("#video-frame",{
+            clipPath:"polygon(14% 0, 72% 0, 88% 90%, 0 95%)",
+            borderRadius:'0 0 14% 10%'
+        }),
+
+        gsap.from("#video-frame",{
+            clipPath:"polygon(0% 0%, 100% 0, 100% 100%, 0 100%)",
+            borderRadius:"0 0 0 0",
+            ease:"power1.inOut",
+            scrollTrigger:{
+                trigger:"#video-frame",
+                start:"center center",
+                end:"bottom center",
+                scrub:true
+            }
+        })
+    })
+ 
   return (
     <div className="relative h-dvh w-screen overflow-x-hidden ">
         <div className="relative z-10 h-dvh w-screen overflow-hidden rounded-lg bg-blue-75">
 
-            <div>
+            <div className="relative z-10 h-dvh w-screen overflow-hidden rounded-lg bg-blue-75" id="video-frame">
                 <div className="mask-clip-path absolute z-50 flex items-center justify-center w-full h-screen  size-64 cursor-pointer overflow-hidden rounded-lg">
                     <div className="origin-center scale-50 opacity-0 transition-all duration-500 ease-in hover:scale-100 hover:opacity-100 " onClick={handleVideoClick}>
                         <video ref={videoRef} 
@@ -76,25 +100,29 @@ const Hero = () => {
                         loop
                         className="size-32 origin-center scale-150 object-cover object-center"
                         onLoadedData={handleVideoLoad}
-                        id="next-video"/>
+                        id="current-video"/>
                     </div>
                 </div>
 
-                <video  autoPlay muted loop src={getVideoIndex(currentIndex)} className="absolute  z-20 object-cover object-center " onLoadedData={handleVideoLoad}/>
-                <video  id="current-video" src={getVideoIndex(currentIndex===totalVideo-1)} autoPlay loop muted className="absolute left-0 top-0 size-full object-cover object-center rounded-none" onLoad={handleVideoLoad}/>
-            </div>
+                <video id="next-video" ref={nextVideoRef} autoPlay muted loop src={getVideoIndex(currentIndex)} className="absolute  z-20 object-cover object-center " onLoadedData={handleVideoLoad}/>
+                <video   src={getVideoIndex(currentIndex===totalVideo-1?0:currentIndex)} autoPlay loop muted className="absolute left-0 top-0 size-full object-cover object-center rounded-none" onLoad={handleVideoLoad}/>
+                <h1 className="absolute bottom-5 right-5 z-40 text-blue-75 poppins-extrabold text-6xl text-white">G<span className="font-extrabold text-[80px]">A</span>MING</h1>
 
-            <h1 className="absolute bottom-5 right-5 z-40 text-blue-75 poppins-extrabold text-6xl text-white">G<span className="font-extrabold text-[80px]">A</span>MING</h1>
-            <h1 className="absolute bottom-5 right-5 z-10 text-blue-75 poppins-extrabold text-6xl text-black">G<span className="font-extrabold text-[80px]">A</span>MING</h1>
-            {/* upper division  */}
-
-            <div className="absolute top-0 left-0 z-40 size-full m-3">
+                {/* upper division */}
+                <div className="absolute top-0 left-0 z-40 size-full m-3">
                 <h2 className="text-6xl text-white poppins-extrabold">REDEFINE</h2>
                 <p className="text-white text-[15px] poppins-light">Enter the metagame layer</p>
                 <p className="text-white text-[15px] poppins-light">Unleash the play economy</p>
 
                 <Button icon={<TiLocationArrow/>} title={"Watch The Trailer"} id={1} containeerclass={"bg-yellow-500"}/>
             </div>
+            </div>
+
+            
+            <h1 className="absolute bottom-5 right-5 poppins-extrabold text-6xl text-black">G<span className="font-extrabold text-[80px]">A</span>MING</h1>
+            
+
+            
         </div>
     </div>
   )
