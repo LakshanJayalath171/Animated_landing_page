@@ -1,6 +1,6 @@
 import { useRef, useState } from "react"
 import { TiLocationArrow } from "react-icons/ti";
-import Button from "../Components/Button.jsx"
+import Button from "./Button.tsx"
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
@@ -109,7 +109,7 @@ const Hero = () => {
                 <h1 className="absolute bottom-5 right-5 z-40 text-blue-75 poppins-extrabold text-6xl text-white">G<span className="font-extrabold text-[80px]">A</span>MING</h1>
 
                 {/* upper division */}
-                <div className="absolute top-0 left-0 z-40 size-full m-3">
+                <div className="absolute top-15 left-10 z-40 size-full m-3">
                 <h2 className="text-6xl text-white poppins-extrabold">REDEFINE</h2>
                 <p className="text-white text-[15px] poppins-light">Enter the metagame layer</p>
                 <p className="text-white text-[15px] poppins-light">Unleash the play economy</p>

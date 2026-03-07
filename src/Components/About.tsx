@@ -1,8 +1,11 @@
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
+import AnimatedTitle from "./AnimatedTitle";
 
-// ✅ Register plugins
+
+//register GSAP Plugins
+
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const About = () => {
@@ -28,6 +31,8 @@ const About = () => {
 
   }, []);
 
+  
+
   return (
     <div id="about" className="w-screen min-h-screen">
 
@@ -37,10 +42,7 @@ const About = () => {
           Welcome to Zentry
         </p>
 
-        <h2 className="text-6xl text-center">
-          Discover the W<b>o</b>rld's <br />
-          <b>Largest</b> Shared Adventure
-        </h2>
+        <AnimatedTitle title={"Discover the World's Largest Shared Adventure"}/>
 
         <div className="absolute bottom-10 text-center">
           <p>The Game of Games begins—your life, now an epic MMORPG</p>
