@@ -9,6 +9,15 @@
   clip-path: polygon(1% 1%, 99% 37%, 84% 100%, 0% 99%);
 }
 
+.smal_image_clip_path{
+  clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+}
+
+.regtangle_clip_path{
+  clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+}
+
+
 @layer base{
   @font-face {
     font-family: 'circular-web';

@@ -51,7 +51,7 @@ const Story = () => {
 
         <div className="mt-30 mr-10 flex w-full justify-center Md:mt-64 md:me-44 md:justify-end">
             <div className="flex h-full w-fit flex-col items-center md:items-start">
-                <p className="poppins-light mt-3 max-w-sm text-center text-violet-50 md:text-start">Uncovers a forgotten world buried beyond the edge of reality. Ancient powers, lost civilizations, and mysterious forces wait in the shadows, challenging those brave enough to explore its secrets. Every path reveals new legends, hidden dangers, and the truth behind a realm that history tried to erase.</p>
+                <p className="poppins-bold mt-3 max-w-sm text-center text-violet-50 md:text-start">Uncovers a forgotten world buried beyond the edge of reality. Ancient powers, lost civilizations, and mysterious forces wait in the shadows, challenging those brave enough to explore its secrets. Every path reveals new legends, hidden dangers, and the truth behind a realm that history tried to erase.</p>
                 <Button title={'Discover Prolouge'} id='relm-button' containeerclass={"mt-5"} textColor={'text-blue-50'}/>
             </div>
         </div>
