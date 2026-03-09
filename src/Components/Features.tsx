@@ -1,11 +1,40 @@
 // defining cards 
 
-import { CiLocationArrow1 } from "react-icons/ci"
+import { useRef, useState } from "react"
+import { CgArrowDown } from "react-icons/cg"
+
 
 
 const Card = ({src ,title,desc })=>{
+
+  const [transfromStyle , setTransformStyle] = useState('')
+  const itemRef = useRef();
+
+  // handle mouse move event 
+  const handleMouseMove = (e)=>{
+    if(!itemRef.current) return
+
+    const {top,left,width,height} = itemRef.current.getBoundingClientRect();
+
+    const relativeX = (e.clientX - left)/width;
+    const relativeY = (e.clientY - top)/height;
+
+    const tiltX = (relativeX - 0.5) * 5;
+    const tiltY = (relativeY - 0.5) * -5;
+
+    const newTransform = `perspective(700px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3D(0.98,0.98,0.98)`
+
+    
+    setTransformStyle(newTransform)
+  }
+
+  // handle mouse leave event 
+  const handleMouseLeave = ()=>{
+    pass
+  }
+
   return(
-    <div className="relative size-full border border-blue-50 rounded-2xl mt-6">
+    <div ref={itemRef} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} style={{transform:transfromStyle}} className="relative size-full border border-blue-50 rounded-2xl mt-6">
       <video src={src} loop autoPlay muted className="rounded-2xl absolute inset-0 top-0 left-0 size-full object-cover object-center"/>
 
       <div className="relative z-10 size-full flex-col justify-between p-5 text-blue-50">
@@ -47,7 +76,7 @@ const Features = () => {
 
           <div className="h-96 mt-5 w-full overflow-hidden rounded-md md:h-[65vh] grid grid-cols-2 gap-7 ">
             <Card title={''} src={'public/videos/feature-5.mp4'}/>
-            <div className="w-full mt-5 h-full rounded-3xl bg-purple-600 p-7 relative">
+            <div className="border border-blue-50 w-full mt-5 h-full rounded-3xl bg-purple-600 p-7 relative">
               <h2 className="text-blue-50 text-3xl poppins-bold opacity-75">More comming<br/><span className="Poppins-extraBold text-6xl">Soon!</span> </h2>
              
             </div>
