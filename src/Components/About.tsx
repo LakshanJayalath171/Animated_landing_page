@@ -42,7 +42,7 @@ const About = () => {
           Welcome to Zentry
         </p>
 
-        <AnimatedTitle title={"Discover the World's Largest Shared Adventure"}/>
+        <AnimatedTitle title={"Discover the World's Largest Shared Adventure"} sectionId="#about"/>
 
         <div className="absolute bottom-10 text-center">
           <p>The Game of Games begins—your life, now an epic MMORPG</p>

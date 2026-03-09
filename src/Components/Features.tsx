@@ -29,9 +29,7 @@ const Card = ({src ,title,desc })=>{
   }
 
   // handle mouse leave event 
-  const handleMouseLeave = ()=>{
-    pass
-  }
+  const handleMouseLeave = ()=>{}
 
   return(
     <div ref={itemRef} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} style={{transform:transfromStyle}} className="relative size-full border border-blue-50 rounded-2xl mt-6">
